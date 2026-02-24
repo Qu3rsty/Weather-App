@@ -1,0 +1,22 @@
+{
+    "Zgórsko": {
+        "id": 1,
+        "name": "Zgórsko"
+    },
+    "Podborze": {
+        "id": 2,
+        "name": "Podborze"
+    },
+    "Wadowice Górne": {
+        "id": 3,
+        "name": "Wadowice Górne"
+    },
+    "Mielec": {
+        "id": 4,
+        "name": "Mielec"
+    },
+    "Radomyśl Wielki": {
+        "id": 5,
+        "name": "Radomyśl Wielki"
+    }
+}
