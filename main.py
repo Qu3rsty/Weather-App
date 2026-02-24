@@ -1,9 +1,10 @@
+# libriaries
 import requests
 from colorama import Fore, Style
-import time
 import sys
 import json
 
+# saves
 with open("cities/cities.json", "r") as file:
     cities = json.load(file)
 
@@ -12,7 +13,9 @@ print(Fore.MAGENTA + "--- WSZYSTKIE MIASTA ---" + Style.RESET_ALL)
 for names in cities:
     print(Fore.MAGENTA + f"({cities[names]['id']}) " + Style.RESET_ALL + names)
 
+# City search engine
 CITY=input("\nWybierz miasto\n> ")
+
 for name, info in cities.items():
     if str(info['id']) == CITY:
         CITY = name
@@ -29,9 +32,14 @@ url=f"https://api.openweathermap.org/data/2.5/weather?q={CITY}&appid={API_KEY}&u
 response = requests.get(url)
 data = response.json()
 
-temp = data['main']['temp']
-humidity = data['main']['humidity']
-clouds = data['clouds']['all']
+# Downloading weather data
+try:
+    temp = data['main']['temp']
+    humidity = data['main']['humidity']
+    clouds = data['clouds']['all']
+except KeyError:
+    print(Fore.RED + "Wybierz poprawne miasto!" + Style.RESET_ALL)
+    sys.exit()
 
 print(f"\n--- Pogoda w {CITY} ---") 
 
@@ -42,3 +50,15 @@ elif temp <= 0:
 
 print(Fore.LIGHTBLUE_EX + f"- Wilgotność powietrza: {humidity}%" + Style.RESET_ALL)
 print(Fore.WHITE + f"- Zachmurzenie: {clouds}%\n" + Style.RESET_ALL)
+sys.exit()
+
+# Preparing more features
+print(Fore.MAGENTA + "(1)" + Style.RESET_ALL, "Wyjście")
+
+action_2 = input("Wybierz następne działanie\n> ")
+
+if action_2 == '1':
+    sys.exit()
+else:
+    print("Wybierz poprawną opcję!")
+    sys.exit()
